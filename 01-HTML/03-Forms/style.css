@@ -3,3 +3,25 @@ body
 {
     font-family:Roboto Condensed;
 }
+textarea
+{
+    resize:none;
+    width:30em;;
+    height:15em;
+}
+fieldset
+{
+    width:30em;
+}
+.EULA
+{
+    width:300px;
+    height:200px;
+    border:solid 1px;
+    overflow:scroll;
+    text-align:justify;
+}
+div
+{
+    margin:5px;
+}
