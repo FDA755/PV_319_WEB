@@ -99,3 +99,96 @@ body
     background-image: linear-gradient(to right, #001177CC, #0055BBFF, #001177CC) 
     /*background-color: darkblue;*/
 }
+/*------------------------------------------------------------------------------*/
+#work-area {
+    width: 95%;
+    display:block;
+}
+.menu-bar, .display, .buttons{
+    width:100%;
+}
+.display{
+    display:flex;
+    justify-content:center;
+}
+.menu-bar{
+    width: 100%;
+    justify-content: left;
+}
+    .menu-bar > button {
+        /*для всех 'button', вложенных в блок 'menu-bar'*/
+        /*https://www.w3schools.com/css/css_combinators.asp*/
+        width: 50px;
+        height: 22px;
+        margin: 0;
+        background: rgb(236,233,216);
+        border:none;
+    }
+#text{
+    width:93%;
+}
+input[type=text]{
+    text-align:right;
+}
+.buttons{
+    display:flex;
+    justify-content:left;
+}
+    .buttons  button{
+        width:50px;
+        height:40px;
+        margin:5px ;
+        /*border:solid 1px darkblue;
+        border-radius:5px;*/
+    }
+.memory-buttons {
+    /*display: flex;
+    align-items: center;
+    flex-direction:column;*/
+    display: grid;
+    grid-template-columns: 50px;
+    grid-template-rows: 40px 40px 40px 40px;
+    grid-gap: 10px;
+    margin: 0 0px;
+}
+    .memory-buttons > button{
+        color:red;
+    }
+    .memory-buttons > #square{
+        width:32px;
+        height:32px;
+        border:inset 2px;
+        margin:7px 10px;
+    }
+.main-block button{
+    margin:5px;
+}
+.wide-buttons {
+    margin:0 15px;
+}
+.wide-buttons > button{
+    width:85px;
+    color:red;
+}
+.digits-and-operations{
+    display:flex;
+    justify-content:left;
+}
+.digit-buttons {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 40px 40px 40px 40px;
+    grid-gap: 10px;
+    /*margin: 0 15px;*/
+    margin-left:10px;
+}
+    .digit-buttons button{
+        color:darkblue;
+    }
+.operational-buttons , .results-buttons{
+    display: grid;
+    grid-template-columns: 50px;
+    grid-template-rows: 40px 40px 40px 40px;
+    grid-gap: 10px;
+    margin-left:10px;
+}
