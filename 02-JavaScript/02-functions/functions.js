@@ -1,4 +1,4 @@
-// JavaScript source code
+﻿// JavaScript source code
 //alert("Functions");
 function calculatePower()
 {
@@ -55,4 +55,90 @@ function setImage()
         document.getElementById("photo").src = e.target.result;
     }
         reader.readAsDataURL(filename.files[0]);
+}
+document.body.onload = function tick_timer()
+{
+    let time = new Date();
+    document.getElementById("full-time").innerHTML = time;
+    document.getElementById("hours").innerHTML =    addLeadingZero(time.getHours());
+    document.getElementById("minutes").innerHTML =  addLeadingZero(time.getMinutes());
+    document.getElementById("seconds").innerHTML = addLeadingZero(time.getSeconds());
+
+    document.getElementById("year").innerHTML = time.getFullYear();
+    document.getElementById("month").innerHTML = addLeadingZero(time.getMonth() + 1);
+    document.getElementById("day").innerHTML = addLeadingZero(time.getDate());
+
+    document.getElementById("weekday").innerHTML = time.toLocaleDateString("ru", {weekday:'long'});
+
+    /*if (document.getElementById("show-date").checked)
+    {
+        document.getElementById("current-date").style.visibility = "visible";
+    }
+    else
+    {
+        document.getElementById("current-date").style.visibility = "hidden";
+    }*/
+    document.getElementById("current-date").style.visibility =
+        document.getElementById("show-date").checked ? "visible" : "hidden";
+    document.getElementById("weekday").style.visibility =
+        document.getElementById("show-weekday").checked ? "visible" : "hidden";
+
+    setTimeout(tick_timer, 100);
+}
+function addLeadingZero(number)
+{
+    return number < 10 ? "0" + number : number;
+}
+document.getElementById("btn-start").onclick = function startCountdownTimer()
+{
+    let targetDate = document.getElementById("target-date");
+    let targetTime = document.getElementById("target-time");
+    let btnStart = document.getElementById("btn-start");
+    targetDate.disabled = targetTime.disabled = !targetDate.disabled;
+
+    if (btnStart.value == "Start")
+    {
+        btnStart.value = "Stop";
+        tickCountDown();
+    }
+    else
+    {
+        btnStart.value = "Start";
+    }
+}
+function tickCountDown()
+{
+    if (!document.getElementById("target-time").disabled) return;
+    let now = new Date();
+    console.log(`now timezoneOffset:\t${now.getTimezoneOffset()}`);
+    //Controls - это элементы интерфейса
+    let targetDateControl = document.getElementById("target-date");
+    let targetTimeControl = document.getElementById("target-time");
+    let targetDate = targetDateControl.valueAsDate;
+    let targetTime = targetTimeControl.valueAsDate;
+
+    //Выравниваем часовой пояс:
+    targetDate.setHours(targetDate.getHours() + targetDate.getTimezoneOffset() / 60);
+    targetTime.setHours(targetDate.getHours() + targetTime.getTimezoneOffset() / 60);
+
+    //Приводим дату в целевом времени к выбранной дате:
+    targetTime.setFullYear(targetDate.getFullYear());
+    targetTime.setMonth(targetDate.getMonth());
+    targetTime.setDate(targetDate.getDate());
+
+    //Определяем промежуток времени до указанной даты:
+    let duration = targetTime - now; //разность дат вычисляется в формате Timestamp
+    document.getElementById("duration").innerHTML = duration;
+    //Timestamp - это количество миллисекунд от 1 января 1970 года.
+    let timestamp = Math.trunc(duration / 1000);
+    document.getElementById("timestamp").innerHTML = timestamp;
+
+
+    //Отображаем целевую дату/время и промежуток на странице:
+    document.getElementById("target-date-value").innerHTML = targetDate;
+    document.getElementById("target-time-value").innerHTML = targetTime;
+
+    console.log(`targeTime timezoneOffset:\t${now.getTimezoneOffset()}`);
+
+    setTimeout(tickCountDown, 100);
 }
