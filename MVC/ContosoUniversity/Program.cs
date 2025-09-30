@@ -8,12 +8,12 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.
-    Services.
-    AddDbContext<UniversityContext>
-    (
-        opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-    );
+builder
+	.Services
+	.AddDbContext<UniversityContext>
+	(
+		opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"))
+	);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
