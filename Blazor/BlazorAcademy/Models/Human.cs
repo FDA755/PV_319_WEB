@@ -12,13 +12,15 @@ namespace BlazorAcademy.Models
 		public string first_name { get; set; }
 		public string? middle_name { get; set; }
 		[Required]
-		DateTime birtDate { get; set; }
+		public DateOnly birth_date { get; set; }
 		[EmailAddress]
 		public string? email { get; set; }
 		[Phone]
 		public string? phone { get; set; }
 
 		public byte[]? photo { get; set; }
+		public string FullName { get => $"{last_name} {first_name} {middle_name}"; }
+		public int Age { get => (int)((DateOnly.FromDateTime(DateTime.Now).DayNumber - birth_date.DayNumber) /362.25); }
 		
 
 	}
